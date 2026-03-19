@@ -1,0 +1,29 @@
+<div class="cart-container">
+
+<h2 class="cart-title">Your Cart</h2>
+
+{% for item in cart_items %}
+
+<div class="cart-item">
+
+    <div class="cart-info">
+        <p><strong>{{ item.product.name }}</strong></p>
+        <p>Price: ₹{{ item.product.price }}</p>
+        <p>Quantity: {{ item.quantity }}</p>
+    </div>
+
+    <div class="cart-actions">
+        <a class="cart-btn" href="{% url 'increase' item.id %}">+</a>
+        <a class="cart-btn" href="{% url 'decrease' item.id %}">-</a>
+        <a class="cart-btn remove-btn" href="{% url 'remove' item.id %}">Remove</a>
+    </div>
+
+</div>
+
+{% endfor %}
+
+<div class="cart-total">
+Total: ₹{{ total }}
+</div>
+
+</div>

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1 class="page-title">Our Coffee Menu ☕</h1>
+
+<div class="products">
+
+    {% for product in products %}
+
+    <div class="product-card">
+
+        <a href="{% url 'product_detail' product.id %}" target="_blank">
+
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% endif %}
+
+            <h3>{{ product.name }}</h3>
+
+        </a>
+
+        <p class="price">₹{{ product.price }}</p>
+
+        <form method="POST" action="{% url 'add_to_cart' product.id %}">
+            {% csrf_token %}
+            <button type="submit">Add to Cart</button>
+        </form>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

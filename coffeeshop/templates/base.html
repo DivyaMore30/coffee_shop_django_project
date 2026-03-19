@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coffee Shop</title>
+
+     {% load static %}
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+
+</head>
+<body>
+
+<header>
+    <h2>
+    <a href="{% url 'home' %}">☕ Coffee Shop</a>
+    </h2>
+
+    <nav>
+        <a href="#">Espresso</a>
+        <a href="#">Latte</a>
+        <a href="#">Cappuccino</a>
+        <a href="#">Cold Coffee</a>
+    </nav>
+
+    <div>
+        {% if user.is_authenticated %}
+        <form action="/logout/" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    {% endif %}
+    </div>
+</header>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
