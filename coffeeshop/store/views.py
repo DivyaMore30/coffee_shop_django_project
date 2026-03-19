@@ -7,11 +7,12 @@ from .models import Product, Cart
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 
+#this function displays the list of products
 def product(request):
     products = Product.objects.all()
     return render(request, 'home.html', {'products': products})
 
-
+#this function displays the details of a product
 def product_detail(request, id):
     product = Product.objects.get(id=id)
     return render(request, 'product_detail.html', {'product': product})
