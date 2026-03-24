@@ -87,6 +87,7 @@ def register_view(request):
     return render(request, 'register.html')
 
 
+#login_view
 
 def login_view(request):
 
@@ -105,7 +106,7 @@ def login_view(request):
             return redirect("login")
 
     return render(request, "login.html")
-
+# logout_view
 def logout_view(request):
     logout(request)
     messages.success(request, "Logged out successfully")
