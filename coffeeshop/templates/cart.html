@@ -1,13 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 <div class="cart-container">
 
-<h2 class="cart-title">Your Cart</h2>
+<h2 class="cart-title">Your Cart 🛒</h2>
 
 {% for item in cart_items %}
 
 <div class="cart-item">
 
+    <div class="cart-image">
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+    </div>
+
     <div class="cart-info">
-        <p><strong>{{ item.product.name }}</strong></p>
+        <p class="cart-name">{{ item.product.name }}</p>
         <p>Price: ₹{{ item.product.price }}</p>
         <p>Quantity: {{ item.quantity }}</p>
     </div>
@@ -20,10 +28,13 @@
 
 </div>
 
+{% empty %}
+<p style="text-align:center;">Your cart is empty ☕</p>
 {% endfor %}
 
 <div class="cart-total">
-Total: ₹{{ total }}
+    Total: ₹{{ total }}
 </div>
 
 </div>
+{% endblock %}
