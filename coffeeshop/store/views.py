@@ -6,7 +6,8 @@ from django.shortcuts import render
 from .models import Product, Cart
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import render, get_object_or_404
+from .models import Product, Category
 #this function displays the list of products
 def product(request):
     products = Product.objects.all()
@@ -111,3 +112,13 @@ def logout_view(request):
     logout(request)
     messages.success(request, "Logged out successfully")
     return redirect("login")
+
+
+def category_products(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    products = Product.objects.filter(category=category)
+
+    return render(request, 'category.html', {
+        'category': category,
+        'products': products
+    })
