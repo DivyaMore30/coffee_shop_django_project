@@ -75,7 +75,7 @@ def remove_item(request, cart_id):
     cart_item.delete()
     return redirect('cart')
 
-
+# register_view
 def register_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
